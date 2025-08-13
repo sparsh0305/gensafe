@@ -1,6 +1,6 @@
 {
   "short_name": "GenSafe",
-  "name": "GenSafe — Community Safety",
+  "name": "GenSafe — Safety & Support",
   "icons": [
     { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
     { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
@@ -9,5 +9,5 @@
   "background_color": "#ffffff",
   "display": "standalone",
   "scope": "/",
-  "theme_color": "#1E88E5"
+  "theme_color": "#0ea5e9"
 }
