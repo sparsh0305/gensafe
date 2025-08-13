@@ -2,27 +2,27 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Allow anyone to read public collections
+    // Public read
     match /{document=**} {
       allow read: if true;
     }
 
-    // Restrict writes to 'reports' to authenticated users only
+    // Reports: only authenticated (including anonymous) users can create
     match /reports/{reportId} {
       allow create: if request.auth != null
         && request.resource.data.keys().hasAll(['category','description','location','createdAt'])
-        && request.resource.data.category is string
-        && request.resource.data.description is string
         && request.resource.data.location.lat is number
         && request.resource.data.location.lng is number;
+      allow read: if true;
       allow update, delete: if false;
     }
 
-    // Chat - only authenticated users can create messages
+    // Chat: only authenticated users can create messages; read allowed
     match /chat/{msgId} {
       allow create: if request.auth != null && request.resource.data.text is string && request.resource.data.text.size() < 1000;
       allow read: if true;
       allow update, delete: if false;
     }
+
   }
 }
